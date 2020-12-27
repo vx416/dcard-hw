@@ -85,7 +85,7 @@ rate limit 達到限制的 error json format
 促發 rate limit 限制的腳本
 
 ```shell
-cat <<EOF | sudo /bin/zsh
+cat <<EOF | sudo /bin/sh
 for i in {1..5};
 do
   curl -s -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
