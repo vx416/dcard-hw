@@ -29,12 +29,12 @@
 
 設計兩種演算法 **Leaky Bucket** 和 **Simple Counter**
 
-**Leaky Bucket**
+**Leaky Bucket** <br>
 透過計算 request rate (i.e 每秒消耗多少個 request) 來動態調整 client 可以發送的 request 數，而 client 的發送的 request 數量會在設定的時間後被清除
 
 例如：每個 IP 每分鐘僅能接收 60 requests，換言之 request rate 1/sec，如果 client 在第一秒發送 60 requests，bucket 會被填滿，在 client 發送第 61 個 request 時，會被 block 住，而由於 server 消耗 request 的速度 1/sec，因此在過 1sec 後，client 就可以發第 61 個 request，但如果過 1sec 後，連發第 61, 62 個 request，第 62 個 request 會被 block 住。
 
-**Simple Counter**
+**Simple Counter** <br>
 使用 一般計數器 紀錄一分種之內收到的 request 數量，如果大於設定上限則會顯示 error，計數器會在第一個 request 到達時設定重置時間，一旦重置時間到達計數器會重新設定為 0。
 
 > **leaky bucket vs simple counter** <br> 使用一般的 counter 去紀錄 request 數，然後在一段時間後重置，這種流量限制方法在request 短時間內爆發大量的時候會有缺陷，例如，當 client 在第一秒的時候發送 60 個 request，那麼 client 必須在等待 59sec 才能在發下一個 request，而 leaky bucket 可以透過 request rate 解決上述問題。
