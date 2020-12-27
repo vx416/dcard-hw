@@ -1,0 +1,50 @@
+[
+  {
+    "name": "rat",
+    "description": "wisdom"
+  },
+  {
+    "name": "ox",
+    "description": "diligent"
+  },
+  {
+    "name": "tiger",
+    "description": "brave"
+  },
+  {
+    "name": "rabbit",
+    "description":"cautious"
+  },
+  {
+    "name":"dragon",
+    "description": "tenacity"
+  },
+  {
+    "name": "snake",
+    "description":"flexible"
+  },
+  {
+    "name":"horse",
+    "description": "persistent"
+  },
+  {
+    "name":"goat",
+    "description": "tender"
+  },
+  {
+    "name":"monkey",
+    "description": "creative"
+  },
+  {
+    "name":"rooster",
+    "description": "constant"
+  },
+  {
+    "name":"dog",
+    "description": "faithful"
+  },
+  {
+    "name":"pig",
+    "description": "amiable"
+  }
+]

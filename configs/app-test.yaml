@@ -1,0 +1,13 @@
+data_path: /Users/vicxu/projects/tiny-url/configs/animals.json
+server:
+  host: 127.0.0.1
+  port: 80
+  healthcheck: /ping
+log:
+  app_name: dcard-work
+  level: debug
+  env: dev
+limiter:
+  type: counter
+  period_sec: 60
+  request_count: 60

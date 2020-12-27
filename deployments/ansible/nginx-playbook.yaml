@@ -1,0 +1,14 @@
+---
+  - hosts: server
+    become: true
+    tasks:
+      - name: copy nginx config
+        copy:
+          src: "{{playbook_dir}}/nginx.conf"
+          dest: "{{ nginx_config }}"
+        vars:
+          nginx_config: /etc/nginx/sites-available/default
+      - name: reload nginx
+        systemd:
+          name: nginx.service
+          state: reloaded

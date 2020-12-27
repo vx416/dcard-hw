@@ -1,0 +1,60 @@
+---
+  - hosts: server
+    become: true
+    vars:
+      dcard_config: /etc/dcard
+      nginx_config: /etc/nginx/sites-available/default
+    tasks:
+      - name: create server directory
+        file:
+          name: "{{ dcard_config }}"
+          state: directory
+      - name: create server config file
+        file:
+          name: "/etc/dcard/{{ item.filename }}"
+          state: touch
+        loop:
+          - { filename: app.yaml }
+          - { filename: animals.json }
+      - name: copy app config
+        copy:
+          src: "{{playbook_dir}}/../../configs/{{ item.filename }}"
+          dest: "/etc/dcard/{{ item.filename }}"
+          force: yes
+        loop:
+          - { filename: app.yaml }
+          - { filename: animals.json }
+      - name: create network
+        docker_network:
+          name: dcard-network
+          state: present
+          connected:
+            - redis
+      - name: run server container
+        docker_container:
+          name: "{{ item.container }}"
+          image: vicxu/dcard-work
+          pull: true
+          ports:
+            - "{{ item.port }}:8080"
+          state: started
+          recreate: yes
+          volumes:
+            - "{{dcard_config}}:/decard-work/configs"
+          env:
+            CONFIG_PATH: /decard-work/configs/
+            CONFIG_FILE: app.yaml
+            DATA_PATH: /decard-work/configs/animals.json
+          networks:
+            - name: dcard-network
+        loop:
+          - { container: dcard-server-1, port: 11111 }
+          - { container: dcard-server-2, port: 11112 }
+      - name: copy nginx config
+        copy:
+          src: "{{playbook_dir}}/nginx.conf"
+          dest: "{{ nginx_config }}"
+      - name: reload nginx
+        systemd:
+          name: nginx.service
+          state: reloaded

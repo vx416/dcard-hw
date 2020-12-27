@@ -1,0 +1,18 @@
+data_path: prj_path/configs/animals.json
+server:
+  host: 127.0.0.1
+  port: 1111
+  healthcheck: /ping
+  mode: debug
+log:
+  app_name: dcard-work
+  level: debug
+  env: dev
+limiter:
+  type: counter
+  period_sec: 60
+  request_count: 60
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    db: 1

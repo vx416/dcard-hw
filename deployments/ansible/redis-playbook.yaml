@@ -1,0 +1,34 @@
+---
+  - hosts: server
+    become: true
+    tasks:
+      - name: create redis directory
+        file:
+          name: /etc/redis
+          state: directory
+      - name: create redis config file
+        file:
+          name: /etc/redis/redis.conf
+          state: file
+      - name: set vm.overcommit_memory 1
+        shell: sysctl vm.overcommit_memory=1
+      - name: copy redis config
+        copy:
+          src: "{{playbook_dir}}/redis.conf"
+          dest: "{{ redis_config }}"
+          force: yes
+        vars:
+          redis_config: /etc/redis/redis.conf
+      - name: run redis container
+        docker_container:
+          name: redis
+          image: redis:6.0.9-alpine
+          ports:
+            - "6379:6379"
+          state: started
+          recreate: yes
+          keep_volumes: yes
+          command: redis-server /etc/redis/redis.conf
+          volumes:
+            - /etc/redis/redis.conf:/etc/redis/redis.conf
+            - redis_data:/var/lib/redis
