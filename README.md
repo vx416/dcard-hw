@@ -8,12 +8,11 @@
 - 附上測試
 - 不使用任何現成 rate limit
 
----
-
 ## 目錄
 
 - [系統設計](#系統設計)
 - [系統安裝](#系統安裝)
+- [Production Server](#Prdouction-Server)
 
 ### 系統設計
 
@@ -130,6 +129,8 @@ curl "https://209.97.172.117.nip.io/guardian_animal?name=小明"
 }
 ```
 
+---
+
 ### 系統安裝
 
 #### 啟動服務
@@ -147,6 +148,14 @@ make run
 go test ./...
 ```
 
-#### Production Domain
+---
+
+### Production Server
+
+#### domain
 
 https://209.97.172.117.nip.io/
+
+#### 架構圖
+
+![系統架構圖](./doc/系統架構圖.svg)

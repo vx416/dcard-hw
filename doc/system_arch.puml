@@ -1,0 +1,22 @@
+@startuml
+title 系統架構圖
+left to right direction
+
+
+[Client] as ClientComp
+
+[Nginx] as ProxyComp
+
+[DcardServer1] as Server1Comp
+[DcardServer2] as Server2Comp
+
+database "Redis" as Cache {
+
+}
+
+ClientComp --> ProxyComp
+ProxyComp --> Server1Comp
+ProxyComp --> Server2Comp
+Server1Comp <--> Cache
+Server2Comp <--> Cache
+@enduml

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="169px" preserveAspectRatio="none" style="width:544px;height:169px;" version="1.1" viewBox="0 0 544 169" width="544px" zoomAndPan="magnify"><defs><filter height="300%" id="fuel19055u4nr" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="90" x="220.5" y="17.4023">系統架構圖</text><!--MD5=[7f2f8f021ba496bad1f94a1981c7f515]
+entity Cache--><path d="M480,79.6992 C480,69.6992 508.5,69.6992 508.5,69.6992 C508.5,69.6992 537,69.6992 537,79.6992 L537,105.1875 C537,115.1875 508.5,115.1875 508.5,115.1875 C508.5,115.1875 480,115.1875 480,105.1875 L480,79.6992 " fill="#FFFFFF" filter="url(#fuel19055u4nr)" style="stroke:#000000;stroke-width:1.5;"/><path d="M480,79.6992 C480,89.6992 508.5,89.6992 508.5,89.6992 C508.5,89.6992 537,89.6992 537,79.6992 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="37" x="490" y="107.2344">Redis</text><!--MD5=[cee30cc05dadadf4c4f2ecc3790dd59b]
+entity ClientComp--><rect fill="#FEFECE" filter="url(#fuel19055u4nr)" height="46.4883" style="stroke:#A80036;stroke-width:1.5;" width="80" x="7" y="69.1992"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="67" y="74.1992"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="65" y="76.1992"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="65" y="80.1992"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="40" x="22" y="102.7344">Client</text><!--MD5=[9df4c4ef2f752607758981c5666f8795]
+entity ProxyComp--><rect fill="#FEFECE" filter="url(#fuel19055u4nr)" height="46.4883" style="stroke:#A80036;stroke-width:1.5;" width="81" x="147" y="69.1992"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="208" y="74.1992"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="206" y="76.1992"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="206" y="80.1992"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="41" x="162" y="102.7344">Nginx</text><!--MD5=[b12834ea26883b39ef1fe3f0cc6260fd]
+entity Server1Comp--><rect fill="#FEFECE" filter="url(#fuel19055u4nr)" height="46.4883" style="stroke:#A80036;stroke-width:1.5;" width="132" x="288" y="28.1992"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="400" y="33.1992"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="398" y="35.1992"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="398" y="39.1992"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="92" x="303" y="61.7344">DcardServer1</text><!--MD5=[bba7c63099ea14c991506cb5136af60e]
+entity Server2Comp--><rect fill="#FEFECE" filter="url(#fuel19055u4nr)" height="46.4883" style="stroke:#A80036;stroke-width:1.5;" width="132" x="288" y="109.1992"/><rect fill="#FEFECE" height="10" style="stroke:#A80036;stroke-width:1.5;" width="15" x="400" y="114.1992"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="398" y="116.1992"/><rect fill="#FEFECE" height="2" style="stroke:#A80036;stroke-width:1.5;" width="4" x="398" y="120.1992"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="92" x="303" y="142.7344">DcardServer2</text><!--MD5=[fc4116821a382d712b8a85b7f7ed82d8]
+link ClientComp to ProxyComp--><path d="M87.32,92.1992 C104.13,92.1992 123.86,92.1992 141.28,92.1992 " fill="none" id="ClientComp-to-ProxyComp" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="146.6,92.1992,137.6,88.1992,141.6,92.1992,137.6,96.1992,146.6,92.1992" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[8ba6b7ab54ee479a3e60e71d216ee728]
+link ProxyComp to Server1Comp--><path d="M228.32,82.2792 C244.66,78.1992 264.08,73.3592 282.66,68.7292 " fill="none" id="ProxyComp-to-Server1Comp" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="287.88,67.4292,278.1833,65.7046,283.0259,68.6285,280.1021,73.4711,287.88,67.4292" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[c06b85dffd6fe6d812ad1f5f3b9947d4]
+link ProxyComp to Server2Comp--><path d="M228.32,101.8792 C244.66,105.8592 264.08,110.5792 282.66,115.0992 " fill="none" id="ProxyComp-to-Server2Comp" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="287.88,116.3692,280.0854,110.3489,283.0226,115.1835,278.1881,118.1207,287.88,116.3692" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[573b1e3abc79497fdeaac1d25382e199]
+link Server1Comp to Cache--><path d="M425.03,70.0292 C442.44,74.7092 460.29,79.5092 474.91,83.4392 " fill="none" id="Server1Comp-Cache" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="479.74,84.7392,472.0894,78.537,474.9119,83.4394,470.0096,86.2619,479.74,84.7392" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="420.12,68.7092,427.7706,74.9114,424.9481,70.0091,429.8504,67.1865,420.12,68.7092" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[bbdc01fa304dcc3961fc38cba65c1225]
+link Server2Comp to Cache--><path d="M425.03,113.8292 C442.29,109.2992 459.98,104.6592 474.53,100.8492 " fill="none" id="Server2Comp-Cache" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="479.74,99.4792,470.0181,97.9028,474.9048,100.7524,472.0552,105.6391,479.74,99.4792" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="420.12,115.1192,429.8419,116.6957,424.9552,113.846,427.8048,108.9594,420.12,115.1192" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[9e025ad6efd7434a3843d374176ec13a]
+@startuml
+title 系統架構圖
+left to right direction
+
+
+[Client] as ClientComp
+
+[Nginx] as ProxyComp
+
+[DcardServer1] as Server1Comp
+[DcardServer2] as Server2Comp
+
+database "Redis" as Cache {
+
+}
+
+ClientComp - -> ProxyComp
+ProxyComp - -> Server1Comp
+ProxyComp - -> Server2Comp
+Server1Comp <- -> Cache
+Server2Comp <- -> Cache
+@enduml
+
+PlantUML version 1.2020.22(Sun Dec 06 17:36:27 CST 2020)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: zh
+Country: TW
+--></g></svg>

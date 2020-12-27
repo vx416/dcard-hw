@@ -1,5 +1,4 @@
 
-
 .PHONY: redis
 
 redis:
@@ -21,3 +20,13 @@ service:
 
 app.yaml:
 	cp $(CURDIR)/configs/app-dev.yaml $(CURDIR)/configs/app.yaml
+
+.PHONY: deploy
+
+deploy: ansible.cfg hosts image
+	ansible-playbook $(CURDIR)/deployments/ansible/server-playbook.yaml
+
+.PHONY: ping.production
+
+ping.production:
+	curl https://209.97.172.117.nip.io/
