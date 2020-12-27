@@ -7,16 +7,21 @@ left to right direction
 
 [Nginx] as ProxyComp
 
-[DcardServer1] as Server1Comp
-[DcardServer2] as Server2Comp
+frame "DcardServer1" as Server1Comp {
+  [RateLimiter] as RateLimiter1
+}
+
+frame "DcardServer2" as Server2Comp {
+  [RateLimiter] as RateLimiter2
+}
 
 database "Redis" as Cache {
 
 }
 
 ClientComp --> ProxyComp
-ProxyComp --> Server1Comp
-ProxyComp --> Server2Comp
-Server1Comp <--> Cache
-Server2Comp <--> Cache
+ProxyComp --> RateLimiter1
+ProxyComp --> RateLimiter2
+RateLimiter1 <--> Cache
+RateLimiter2 <--> Cache
 @enduml
