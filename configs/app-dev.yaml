@@ -1,18 +1,17 @@
-data_path: prj_path/configs/animals.json
 server:
-  host: 127.0.0.1
-  port: 1111
+  host: 0.0.0.0
+  port: 8080
   healthcheck: /ping
   mode: debug
 log:
-  app_name: dcard-work
+  app_name: dcard-hw
   level: debug
   env: dev
 limiter:
-  type: counter
+  type: leaky_bucket
   period_sec: 60
   request_count: 60
   redis:
     host: 127.0.0.1
     port: 6379
-    db: 1
+    db: 2

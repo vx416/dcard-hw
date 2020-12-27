@@ -95,7 +95,7 @@ type testcase struct {
 func TestLimiter_Grant(t *testing.T) {
 	builder, err := newBuilder()
 	assert.NoError(t, err)
-	client, err := builder.RunRedis()
+	client, err := builder.RunRedis("limiter-redis")
 	assert.NoError(t, err)
 	opts := client.Options()
 
@@ -118,4 +118,7 @@ func TestLimiter_Grant(t *testing.T) {
 			testWaitAMinute(ctx, t, limiter, tc)
 		})
 	}
+
+	err = builder.PruneAll()
+	assert.NoError(t, err)
 }

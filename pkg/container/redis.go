@@ -8,8 +8,8 @@ import (
 	"github.com/ory/dockertest"
 )
 
-func (builder *Builder) RunRedis() (*redis.Client, error) {
-	container, err := builder.FindContainer("redis")
+func (builder *Builder) RunRedis(name string) (*redis.Client, error) {
+	container, err := builder.FindContainer(name)
 	if err != nil {
 		return nil, err
 	}
@@ -26,7 +26,7 @@ func (builder *Builder) RunRedis() (*redis.Client, error) {
 		return client, nil
 	}
 
-	resource, err := builder.Run("redis", "6.0.9-alpine", nil)
+	resource, err := builder.RunWithOptions(&dockertest.RunOptions{Repository: "redis", Tag: "6.0.9-alpine", Name: name})
 	if err != nil {
 		return nil, err
 	}

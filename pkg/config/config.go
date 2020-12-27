@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -45,6 +46,7 @@ func Init() (*Config, error) {
 			if os.Getenv("DATA_PATH") != "" {
 				_config.DataPath = os.Getenv("DATA_PATH")
 			}
+			fmt.Println("TESTINGINGINGING", os.Getenv("DATA_PATH"))
 			return
 		} else if os.IsNotExist(fileErr) {
 			err = initFromEnv()

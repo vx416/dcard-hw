@@ -34,6 +34,10 @@ type TestInstance struct {
 	cfg *config.Config
 }
 
+func (ti *TestInstance) runRedis() (*redis.Client, error) {
+	return ti.RunRedis("ti-redis")
+}
+
 func (ti *TestInstance) NewServer(opt fx.Option) (*server.Server, error) {
 	var (
 		err  error
@@ -45,7 +49,7 @@ func (ti *TestInstance) NewServer(opt fx.Option) (*server.Server, error) {
 		fx.Supply(*ti.cfg),
 		fx.Provide(
 			logging.New,
-			ti.RunRedis,
+			ti.runRedis,
 			limiter.NewWithRedis,
 			func(c *redis.Client) limiter.RedisScripter { return c },
 			server.New,

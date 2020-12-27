@@ -1,4 +1,5 @@
 
+
 .PHONY: redis
 
 redis:
@@ -7,7 +8,7 @@ redis:
 .PHONY: run
 
 run:
-	go run $(CURDIR)/main.go server
+	DATA_PATH=$(CURDIR)/configs/animals.json go run $(CURDIR)/main.go server
 
 .PHONY: image
 
@@ -15,12 +16,8 @@ image:
 	docker build -t vicxu/dcard-work -f $(CURDIR)/build/docker/server.dockerfile .
 	docker push vicxu/dcard-work
 
-image.tag:
-	docker build -t vicxu/dcard-work:$(tag) -f $(CURDIR)/build/docker/server.dockerfile .
-	docker push vicxu/dcard-work:$(tag)
-
 service:
 	go build $(CURDIR)/main.go -o service
 
-test:
-	@if [ -e $(tag)]
+app.yaml:
+	cp $(CURDIR)/app-dev.yaml $(CURDIR)/app.yaml

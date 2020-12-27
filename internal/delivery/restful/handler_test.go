@@ -50,3 +50,8 @@ func (s *handlerSuite) SetupTest() {
 	err := s.redisClient.FlushDB(s.ctx).Err()
 	s.Require().NoError(err)
 }
+
+func (s *handlerSuite) TearDownSuite() {
+	err := s.ti.PruneAll()
+	s.Require().NoError(err)
+}
