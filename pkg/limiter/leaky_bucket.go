@@ -44,7 +44,7 @@ end
 
 if not total_reqs then
 	total_reqs = 1
-	redis.call("SET", total_req_key, 1)
+	redis.call("SETEX", total_req_key, refresh_interval, 1)
 else
 	total_reqs = total_reqs + 1
 	redis.call("INCR", total_req_key)
