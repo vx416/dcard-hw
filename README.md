@@ -27,12 +27,15 @@
 
 ##### 演算法設計
 
-使用 **Leaky Bucket** 流量限制演算法，透過計算 request rate (i.e 每秒消耗多少個 request) 來動態調整 client 可以發送的 request 數
-而 client 的發送的 request 數量會在設定的時間後被清除
+設計兩種演算法 **Leaky Bucket** 和 **Simple Counter**
 
-例如：每個 IP 每分鐘僅能接收 60 requests，換言之 request rate 1/sec，如果 client 在第一秒發送 60 requests，bucket 會被填滿，在 client 發送
-第 61 個 request 時，會被 block 住，而由於 server 消耗 request 的速度 1/sec，因此在過 1sec 後，client 就可以發第 61 個 request，但如
-果過 1sec 後，連發第 61, 62 個 request，第 62 個 request 會被 block 住。
+**Leaky Bucket**
+透過計算 request rate (i.e 每秒消耗多少個 request) 來動態調整 client 可以發送的 request 數，而 client 的發送的 request 數量會在設定的時間後被清除
+
+例如：每個 IP 每分鐘僅能接收 60 requests，換言之 request rate 1/sec，如果 client 在第一秒發送 60 requests，bucket 會被填滿，在 client 發送第 61 個 request 時，會被 block 住，而由於 server 消耗 request 的速度 1/sec，因此在過 1sec 後，client 就可以發第 61 個 request，但如果過 1sec 後，連發第 61, 62 個 request，第 62 個 request 會被 block 住。
+
+**Simple Counter**
+使用一般計數器計計算一分種之內收到的 request 數量，如果大於設定上限則會顯示 error，計數器會在第一個 request 到達時設定重置時間，一旦重置時間到達計數器會重新設定為 0。
 
 > **leaky bucket vs simple counter**
 使用一般的 counter 去紀錄 request 數，然後在一段時間後重置，這種流量限制方法在 request 短時間內爆發大量的時候會有缺陷，例如，當 client 在第
@@ -85,20 +88,9 @@ rate limit 達到限制的 error json format
 
 ```shell
 cat <<EOF > sudo /bin/bash
-for i in {1..3};
+for i in {1..5};
 do
   curl -s -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
-      -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
-      -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
-      -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
-      -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
-      -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
-      -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
-      -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
-      -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
-      -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
-      -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
-      -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
       -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
       -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
       -X GET http://209.97.172.117.nip.io/ -X GET http://209.97.172.117.nip.io/ \
@@ -155,6 +147,11 @@ go test ./...
 #### domain
 
 https://209.97.172.117.nip.io/
+
+
+#### rate limiter strategy
+
+採用 simple counter 流量限制
 
 #### 架構圖
 
