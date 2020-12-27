@@ -3,6 +3,8 @@ package testutil
 import (
 	"context"
 	"errors"
+	"path/filepath"
+	"runtime"
 
 	"github.com/go-redis/redis/v8"
 	"github.com/vx416/dcard-work/pkg/config"
@@ -13,6 +15,12 @@ import (
 	"go.uber.org/fx"
 )
 
+func getDataPath() string {
+	_, f, _, _ := runtime.Caller(0)
+	dirPath := filepath.Dir(f)
+	return filepath.Join(dirPath, "../../configs/animals.json")
+}
+
 func NewTestInstance() (*TestInstance, error) {
 	cfg, err := config.Init()
 	if err != nil {
@@ -22,6 +30,7 @@ func NewTestInstance() (*TestInstance, error) {
 	if err != nil {
 		return nil, err
 	}
+	cfg.DataPath = getDataPath()
 
 	return &TestInstance{
 		cfg:     cfg,
