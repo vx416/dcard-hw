@@ -37,9 +37,7 @@
 **Simple Counter**
 使用一般計數器計計算一分種之內收到的 request 數量，如果大於設定上限則會顯示 error，計數器會在第一個 request 到達時設定重置時間，一旦重置時間到達計數器會重新設定為 0。
 
-> **leaky bucket vs simple counter**
-使用一般的 counter 去紀錄 request 數，然後在一段時間後重置，這種流量限制方法在 request 短時間內爆發大量的時候會有缺陷，例如，當 client 在第
-一秒的時候發送 60 個 request，那麼 client 必須在等待 59sec 才能在發下一個 request，而 leaky bucket 透過 request rate 解決上述問題。
+> **leaky bucket vs simple counter** <br> 使用一般的 counter 去紀錄 request 數，然後在一段時間後重置，這種流量限制方法在request 短時間內爆發大量的時候會有缺陷，例如，當 client 在第一秒的時候發送 60 個 request，那麼 client 必須在等待 59sec 才能在發下一個 request，而 leaky bucket 可以透過 request rate 解決上述問題。
 
 #### API 設計
 
