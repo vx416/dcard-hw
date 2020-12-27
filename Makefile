@@ -20,4 +20,4 @@ service:
 	go build $(CURDIR)/main.go -o service
 
 app.yaml:
-	cp $(CURDIR)/app-dev.yaml $(CURDIR)/app.yaml
+	cp $(CURDIR)/configs/app-dev.yaml $(CURDIR)/configs/app.yaml
